@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Neutrino API — Affordable AI API, OpenAI Compatible</title>
-  <meta name="description" content="Access DeepSeek models through OpenAI-compatible API at 50% less than OpenAI. Streamlined, developer-friendly, with streaming support.">
+  <meta name="description" content="Access DeepSeek models through an OpenAI-compatible API at 50% less than OpenAI. $5 for 5 million tokens. Simple, developer-friendly, with streaming support.">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -30,17 +30,15 @@
       margin-bottom: 24px;
     }
 
-    .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 50px 0; }
-    @media (max-width: 700px) { .pricing { grid-template-columns: 1fr; } }
+    .pricing { max-width: 380px; margin: 50px auto; }
 
     .card {
       background: #13131a;
-      border: 1px solid #27272a;
+      border: 1px solid #7c3aed;
       border-radius: 12px;
       padding: 32px 24px;
       text-align: center;
     }
-    .card.featured { border-color: #7c3aed; }
     .card h3 { font-size: 1.3em; margin-bottom: 8px; color: #fff; }
     .card .price { font-size: 2em; font-weight: 700; color: #fff; margin: 12px 0; }
     .card .price span { font-size: 0.5em; color: #a1a1aa; }
@@ -59,8 +57,6 @@
       transition: background 0.2s;
     }
     .btn:hover { background: #6d28d9; }
-    .btn.outline { background: transparent; border: 1px solid #52525b; color: #fff; }
-    .btn.outline:hover { background: #1a1a2e; }
 
     .section { margin: 60px 0; }
     .section h2 { font-size: 1.6em; color: #fff; margin-bottom: 16px; }
@@ -97,39 +93,43 @@
 
     footer { text-align: center; padding: 40px 0; color: #52525b; font-size: 0.85em; border-top: 1px solid #1a1a2e; margin-top: 60px; }
     footer a { color: #a1a1aa; }
+
+    .highlight-box {
+      background: #13131a;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #a1a1aa;
+      font-size: 0.95em;
+    }
+    .highlight-box strong { color: #34d399; }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <div class="badge">OpenAI-Compatible API</div>
-      <h1>Affordable AI API — Cheaper Than OpenAI</h1>
-      <p>Access leading AI models through an OpenAI-compatible endpoint at 50% less cost. Drop-in replacement for your existing projects.</p>
+      <h1>Cheaper AI API for Your Projects</h1>
+      <p>$5 gets you 5 million tokens. Same OpenAI format. Same code. Half the cost.</p>
     </header>
 
-    <!-- 定价 -->
+    <!-- 定价：仅一张卡片 -->
     <div class="pricing">
       <div class="card">
-        <h3>Trial</h3>
-        <div class="price">$2<span>/one-time</span></div>
-        <div class="tokens">1 million tokens</div>
-        <a href="https://neutrino-api.lemonsqueezy.com/checkout/buy/e348c845-59a8-4160-8fb0-2c723d1d8fc4" class="btn outline">Get Started</a>
-        <p style="margin-top:12px;color:#a1a1aa;font-size:0.85em;">Quick test drive</p>
-      </div>
-      <div class="card featured">
-        <h3>Starter</h3>
+        <h3>$5 / 5 Million Tokens</h3>
         <div class="price">$5<span>/one-time</span></div>
-        <div class="tokens">5 million tokens</div>
+        <div class="tokens">No subscription. Pay once, use until tokens run out.</div>
         <a href="https://neutrino-api.lemonsqueezy.com/checkout/buy/e348c845-59a8-4160-8fb0-2c723d1d8fc4" class="btn">Get Started</a>
-        <p style="margin-top:12px;color:#a1a1aa;font-size:0.85em;">Best for testing</p>
       </div>
-      <div class="card">
-        <h3>Standard</h3>
-        <div class="price">$20<span>/one-time</span></div>
-        <div class="tokens">25 million tokens</div>
-        <a href="https://neutrino-api.lemonsqueezy.com/checkout/buy/e348c845-59a8-4160-8fb0-2c723d1d8fc4" class="btn outline">Get Started</a>
-        <p style="margin-top:12px;color:#a1a1aa;font-size:0.85em;">Best value</p>
-      </div>
+    </div>
+
+    <!-- 定价亮点 -->
+    <div class="highlight-box">
+      <strong>$1 = 1 million tokens</strong>&nbsp;&mdash; roughly 50% cheaper than OpenAI, with the same API format you already use.
     </div>
 
     <!-- 对比表 -->
@@ -141,7 +141,7 @@
         <tr><td>Output / 1M tokens</td><td>$0.60</td><td class="hl">~$0.30</td></tr>
         <tr><td>API format</td><td>OpenAI</td><td class="hl">OpenAI compatible</td></tr>
         <tr><td>Streaming</td><td>Yes</td><td class="hl">Yes</td></tr>
-        <tr><td>Usage tracking</td><td>Dashboard</td><td class="hl">Via API (key-based)</td></tr>
+        <tr><td>Minimum cost to start</td><td>$5 (prepaid)</td><td class="hl">$5 flat</td></tr>
       </table>
     </div>
 
@@ -161,17 +161,17 @@
         )<br><br>
         <span class="k1">print</span>(response.choices[<span class="n1">0</span>].message.content)
       </div>
-      <p style="color:#a1a1aa;font-size:0.85em;">That's it. Both streaming and non-streaming work out of the box.</p>
+      <p style="color:#a1a1aa;font-size:0.85em;">Both streaming and non-streaming work out of the box.</p>
     </div>
 
     <!-- 使用流程 -->
     <div class="section">
       <h2>How It Works</h2>
       <ol class="steps">
-        <li><strong>Choose a plan</strong> and complete payment.</li>
+        <li><strong>Pay $5</strong> via secure checkout.</li>
         <li><strong>Receive your API key</strong> via email within 12 hours.</li>
-        <li><strong>Drop it into your code</strong> — change base_url, api_key, and model name. Everything else stays the same.</li>
-        <li><strong>Supports both streaming</strong> (SSE) and non-streaming modes.</li>
+        <li><strong>Drop it into your code</strong> &mdash; change <code>base_url</code>, <code>api_key</code>, and <code>model</code>. Everything else stays the same.</li>
+        <li><strong>Use it until your 5 million tokens run out.</strong> Then buy again if you need more. Pricing stays the same.</li>
       </ol>
     </div>
 
@@ -180,7 +180,7 @@
       <h2>FAQ</h2>
       <div class="faq-item">
         <h4>What model am I using?</h4>
-        <p>You're accessing DeepSeek's models through our API gateway. Available models include <code>deepseek-chat</code> (recommended) and <code>deepseek-reasoner</code>. The models are fully OpenAI-compatible in both request format and response structure.</p>
+        <p>You're accessing DeepSeek's models through our API gateway. The default model is <code>deepseek-chat</code>. It's fully OpenAI-compatible in both request format and response structure.</p>
       </div>
       <div class="faq-item">
         <h4>Where does my data go?</h4>
@@ -192,7 +192,7 @@
       </div>
       <div class="faq-item">
         <h4>What happens when I run out of tokens?</h4>
-        <p>You'll receive an error response indicating insufficient quota. Simply purchase a new plan — unused tokens don't expire.</p>
+        <p>Your API calls will return an error indicating you've hit your quota. Simply purchase another $5 plan to get 5 million more tokens. Unused tokens don't expire.</p>
       </div>
       <div class="faq-item">
         <h4>Is this a company?</h4>
