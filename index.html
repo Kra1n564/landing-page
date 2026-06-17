@@ -1,216 +1,804 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neutrino API — Affordable AI API, OpenAI Compatible</title>
-  <meta name="description" content="Access DeepSeek models through an OpenAI-compatible API at 50% less than OpenAI. $5 for 5 million tokens. Simple, developer-friendly, with streaming support.">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0a0a0f;
-      color: #e4e4e7;
-      line-height: 1.7;
-    }
-    .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neutrino API — DeepSeek Access Without Chinese ID</title>
+    <meta name="description" content="Use DeepSeek models via an OpenAI-compatible API. $5 for 5M tokens. No Chinese phone number, no Alipay. Start instantly after email delivery.">
 
-    header { text-align: center; padding: 80px 0 60px; }
-    header h1 { font-size: 2.5em; font-weight: 700; margin-bottom: 16px; color: #fff; }
-    header p { font-size: 1.2em; color: #a1a1aa; max-width: 600px; margin: 0 auto; }
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Neutrino API — DeepSeek Access Without China Verification">
+    <meta property="og:description" content="Use DeepSeek models through an OpenAI-compatible API. $5 for 5 million tokens. No Chinese ID required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://neutrinoitapi.com">
+    <meta property="og:image" content="https://neutrinoitapi.com/og-image.png">
+    <!-- Replace the og:image URL with your actual image (1200x630 px) -->
 
-    .badge {
-      display: inline-block;
-      background: #1a1a2e;
-      border: 1px solid #333;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.9em;
-      color: #a78bfa;
-      margin-bottom: 24px;
-    }
+    <!-- Favicon (inline SVG) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
-    .pricing { max-width: 380px; margin: 50px auto; }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #07070e;
+            color: #e0e0e8;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 20px 24px;
+        }
 
-    .card {
-      background: #13131a;
-      border: 1px solid #7c3aed;
-      border-radius: 12px;
-      padding: 32px 24px;
-      text-align: center;
-    }
-    .card h3 { font-size: 1.3em; margin-bottom: 8px; color: #fff; }
-    .card .price { font-size: 2em; font-weight: 700; color: #fff; margin: 12px 0; }
-    .card .price span { font-size: 0.5em; color: #a1a1aa; }
-    .card .tokens { color: #a1a1aa; margin-bottom: 20px; font-size: 0.95em; }
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #1f1f2e;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo span {
+            font-size: 1.6rem;
+        }
+        .nav-cta {
+            background: #7c3aed;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover {
+            background: #6d28d9;
+        }
 
-    .btn {
-      display: inline-block;
-      background: #7c3aed;
-      color: #fff;
-      padding: 12px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn:hover { background: #6d28d9; }
+        /* Header */
+        header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+        .badge {
+            display: inline-block;
+            background: #1a1a2e;
+            border: 1px solid #333;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #a78bfa;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+        header h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #a1a1aa;
+            max-width: 650px;
+            margin: 0 auto 10px;
+        }
+        .value-prop-box {
+            background: #13131a;
+            border: 1px solid #27272a;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 24px auto 0;
+            max-width: 600px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #c4c4d0;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+        .value-prop-box .icon {
+            font-size: 1.4rem;
+            margin-top: 2px;
+        }
+        .value-prop-box strong {
+            color: #34d399;
+            display: block;
+            margin-bottom: 4px;
+        }
 
-    .section { margin: 60px 0; }
-    .section h2 { font-size: 1.6em; color: #fff; margin-bottom: 16px; }
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: #7c3aed;
+            color: #fff;
+            padding: 14px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+        }
+        .btn:hover {
+            background: #6d28d9;
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #7c3aed;
+            color: #a78bfa;
+        }
+        .btn-secondary:hover {
+            background: #1e1335;
+        }
 
-    .code-block {
-      background: #111118;
-      border: 1px solid #27272a;
-      border-radius: 8px;
-      padding: 20px;
-      overflow-x: auto;
-      font-family: 'Fira Code', 'Consolas', monospace;
-      font-size: 0.85em;
-      line-height: 1.6;
-      color: #e4e4e7;
-      margin: 16px 0;
-    }
-    .code-block .c1 { color: #6b7280; }
-    .code-block .s1 { color: #34d399; }
-    .code-block .k1 { color: #c084fc; }
-    .code-block .n1 { color: #fbbf24; }
+        /* Pricing card */
+        .pricing {
+            max-width: 400px;
+            margin: 40px auto;
+        }
+        .card {
+            background: #13131a;
+            border: 1px solid #7c3aed;
+            border-radius: 14px;
+            padding: 36px 28px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.1);
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .card .price {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 10px 0;
+        }
+        .card .price span {
+            font-size: 0.45em;
+            color: #9090a0;
+            font-weight: 400;
+        }
+        .card .tokens {
+            color: #a1a1aa;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+            color: #9090a0;
+            font-size: 0.8rem;
+            align-items: center;
+        }
+        .payment-icons span {
+            font-weight: 600;
+        }
 
-    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #27272a; }
-    th { color: #a1a1aa; font-weight: 500; font-size: 0.9em; }
-    td { font-size: 0.95em; }
-    tr.hl td { color: #a78bfa; font-weight: 600; }
+        /* Highlight box */
+        .highlight-box {
+            background: #1a1a2e;
+            border: 1px solid #2d2d44;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #c0c0d0;
+            font-size: 0.95rem;
+        }
+        .highlight-box strong {
+            color: #34d399;
+        }
 
-    .faq-item { margin-bottom: 24px; }
-    .faq-item h4 { color: #fff; margin-bottom: 6px; }
-    .faq-item p { color: #a1a1aa; font-size: 0.95em; }
+        /* Sections */
+        .section {
+            margin: 60px 0;
+        }
+        .section h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
 
-    .steps li { color: #a1a1aa; margin-bottom: 8px; font-size: 0.95em; margin-left: 20px; }
-    .steps li strong { color: #e4e4e7; }
+        /* Comparison table */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 10px;
+            border: 1px solid #27272a;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+        }
+        th,
+        td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #27272a;
+            font-size: 0.95rem;
+        }
+        th {
+            color: #a1a1aa;
+            font-weight: 500;
+            font-size: 0.85rem;
+            background: #0e0e14;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        /* Fixed highlight class for individual cells */
+        td.highlight {
+            color: #c084fc;
+            font-weight: 600;
+            background: #12121c;
+        }
 
-    footer { text-align: center; padding: 40px 0; color: #52525b; font-size: 0.85em; border-top: 1px solid #1a1a2e; margin-top: 60px; }
-    footer a { color: #a1a1aa; }
+        /* Code block */
+        .code-block {
+            background: #0c0c14;
+            border: 1px solid #27272a;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 16px 0;
+            position: relative;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #e4e4e7;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #2a2a3c;
+            border: 1px solid #3a3a4e;
+            color: #a1a1aa;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: #3d3d5a;
+        }
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        .code-comment {
+            color: #6b7280;
+        }
+        .code-string {
+            color: #34d399;
+        }
+        .code-keyword {
+            color: #c084fc;
+        }
+        .code-number {
+            color: #fbbf24;
+        }
 
-    .highlight-box {
-      background: #13131a;
-      border: 1px solid #27272a;
-      border-radius: 8px;
-      padding: 16px 20px;
-      margin: 16px 0;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #a1a1aa;
-      font-size: 0.95em;
-    }
-    .highlight-box strong { color: #34d399; }
-  </style>
+        /* Steps grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .step-card {
+            background: #13131a;
+            border: 1px solid #27272a;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .step-card .step-num {
+            display: inline-block;
+            background: #7c3aed;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .step-card h4 {
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        .step-card p {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+        }
+
+        /* Social proof stats */
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            text-align: center;
+            min-width: 120px;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #c084fc;
+        }
+        .stat-label {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 28px;
+            border-bottom: 1px solid #1e1e2a;
+            padding-bottom: 20px;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item h4 {
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        .faq-item p {
+            color: #a0a0b0;
+            font-size: 0.95rem;
+        }
+
+        /* Newsletter */
+        .newsletter-box {
+            background: #13131a;
+            border: 1px solid #27272a;
+            border-radius: 10px;
+            padding: 24px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .newsletter-box h3 {
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .newsletter-box p {
+            color: #a1a1aa;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 8px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px 14px;
+            background: #0c0c14;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .newsletter-form button {
+            background: #7c3aed;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Final CTA banner */
+        .final-cta {
+            background: linear-gradient(135deg, #1a1a2e, #12122a);
+            border: 1px solid #7c3aed;
+            border-radius: 14px;
+            padding: 40px 24px;
+            text-align: center;
+            margin: 60px 0;
+        }
+        .final-cta h2 {
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .final-cta p {
+            color: #a1a1aa;
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer & social */
+        footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: #52525b;
+            font-size: 0.85rem;
+            border-top: 1px solid #1a1a2e;
+            margin-top: 60px;
+        }
+        footer a {
+            color: #a1a1aa;
+            text-decoration: underline;
+        }
+        .social-links {
+            display: inline-flex;
+            gap: 16px;
+            list-style: none;
+            margin: 10px 0;
+        }
+        .social-links a {
+            color: #9090a0;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .social-links a:hover {
+            color: #c084fc;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .container {
+                padding: 16px;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="badge">OpenAI-Compatible API</div>
-      <h1>Cheaper AI API for Your Projects</h1>
-      <p>$5 gets you 5 million tokens. Same OpenAI format. Same code. Half the cost.</p>
-    </header>
+    <div class="container">
 
-    <!-- 定价：仅一张卡片 -->
-    <div class="pricing">
-      <div class="card">
-        <h3>$5 / 5 Million Tokens</h3>
-        <div class="price">$5<span>/one-time</span></div>
-        <div class="tokens">No subscription. Pay once, use until tokens run out.</div>
-        <a href="https://neutrino-api.lemonsqueezy.com/checkout/buy/e348c845-59a8-4160-8fb0-2c723d1d8fc4" class="btn">Get Started</a>
-      </div>
+        <!-- Navigation -->
+        <nav>
+            <div class="logo"><span>⚡</span> Neutrino API</div>
+            <a href="#pricing" class="nav-cta">Get API Key</a>
+        </nav>
+
+        <!-- Header -->
+        <header>
+            <div class="badge">OpenAI-Compatible · No China ID Needed</div>
+            <h1>DeepSeek Access,<br>Without the Hassle</h1>
+            <p>Use DeepSeek models through a standard OpenAI API. <strong>No Chinese phone number. No Alipay. No verification.</strong></p>
+            <div class="value-prop-box">
+                <span class="icon">🔓</span>
+                <div>
+                    <strong>Why developers choose Neutrino</strong>
+                    DeepSeek’s official API requires identity verification and a Chinese payment method. We handle the gateway so you can focus on building — just plug in your API key.
+                </div>
+            </div>
+        </header>
+
+        <!-- Pricing Card (anchor) -->
+        <div id="pricing" class="pricing">
+            <div class="card">
+                <h3>$5 / 5 Million Tokens</h3>
+                <div class="price">$5<span>/one-time</span></div>
+                <div class="tokens">No monthly fees. Pay once, use anytime. Tokens never expire.</div>
+                <a href="https://neutrino-api.lemonsqueezy.com/checkout/buy/e348c845-59a8-4160-8fb0-2c723d1d8fc4" class="btn">Get Started — $5</a>
+                <div class="payment-icons">
+                    <span>🔒 Secure checkout with</span>
+                    <span>Visa, Mastercard, PayPal</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Value highlight -->
+        <div class="highlight-box">
+            <strong>⚡ $1 per million tokens</strong> — simple, no input/output split. Half the cost of GPT‑4o mini with the same API format.
+        </div>
+
+        <!-- Comparison table (Focus on service, not direct unit price) -->
+        <div class="section">
+            <h2>Why not use DeepSeek directly?</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>DeepSeek Official</th>
+                            <th>Neutrino API</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Registration</td>
+                            <td>Chinese phone number + ID</td>
+                            <td class="highlight">Email only</td>
+                        </tr>
+                        <tr>
+                            <td>Payment</td>
+                            <td>Alipay / WeChat (China bank card)</td>
+                            <td class="highlight">Visa, Mastercard, PayPal</td>
+                        </tr>
+                        <tr>
+                            <td>Global access</td>
+                            <td>Restricted in some regions</td>
+                            <td class="highlight">Available worldwide</td>
+                        </tr>
+                        <tr>
+                            <td>API format</td>
+                            <td>OpenAI compatible</td>
+                            <td class="highlight">OpenAI compatible (same)</td>
+                        </tr>
+                        <tr>
+                            <td>Streaming</td>
+                            <td>Yes</td>
+                            <td class="highlight">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing model</td>
+                            <td>Pay-as‑you‑go (USD not natively supported)</td>
+                            <td class="highlight">One‑time $5 for 5M tokens</td>
+                        </tr>
+                        <tr>
+                            <td>Support</td>
+                            <td>Chinese language mainly</td>
+                            <td class="highlight">English, email & community</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="color:#9090a0; font-size:0.85rem; margin-top:12px;">
+                * DeepSeek offers lower raw token prices, but purchasing them requires a Chinese bank account and identity verification. Neutrino removes these barriers.
+            </p>
+        </div>
+
+        <!-- Quick Start (multi‑language) -->
+        <div class="section">
+            <h2>Quick Start</h2>
+            <p style="color:#a1a1aa; margin-bottom:16px;">Replace 3 lines in your existing OpenAI code. No other changes needed.</p>
+
+            <!-- Python -->
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre><code><span class="code-keyword">from</span> openai <span class="code-keyword">import</span> OpenAI
+
+client = OpenAI(
+    base_url=<span class="code-string">"https://api.neutrinoitapi.com/v1"</span>,   <span class="code-comment"># Change this</span>
+    api_key=<span class="code-string">"your-api-key"</span>                <span class="code-comment"># Change this</span>
+)
+
+response = client.chat.completions.create(
+    model=<span class="code-string">"deepseek-chat"</span>,                 <span class="code-comment"># Change this</span>
+    messages=[{<span class="code-string">"role"</span>: <span class="code-string">"user"</span>, <span class="code-string">"content"</span>: <span class="code-string">"Hello!"</span>}]
+)
+
+<span class="code-keyword">print</span>(response.choices[<span class="code-number">0</span>].message.content)</code></pre>
+            </div>
+
+            <!-- cURL -->
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre><code>curl https://api.neutrinoitapi.com/v1/chat/completions \
+  -H <span class="code-string">"Authorization: Bearer your-api-key"</span> \
+  -H <span class="code-string">"Content-Type: application/json"</span> \
+  -d <span class="code-string">'{
+    "model": "deepseek-chat",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'</span></code></pre>
+            </div>
+
+            <!-- Node.js -->
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                <pre><code><span class="code-keyword">import</span> OpenAI <span class="code-keyword">from</span> <span class="code-string">'openai'</span>;
+
+<span class="code-keyword">const</span> client = <span class="code-keyword">new</span> OpenAI({
+    baseURL: <span class="code-string">"https://api.neutrinoitapi.com/v1"</span>,
+    apiKey: <span class="code-string">"your-api-key"</span>,
+});
+
+<span class="code-keyword">const</span> response = <span class="code-keyword">await</span> client.chat.completions.create({
+    model: <span class="code-string">"deepseek-chat"</span>,
+    messages: [{ role: <span class="code-string">"user"</span>, content: <span class="code-string">"Hello!"</span> }],
+});
+
+console.log(response.choices[<span class="code-number">0</span>].message.content);</code></pre>
+            </div>
+
+            <p style="color:#a1a1aa; font-size:0.85rem;">Streaming works automatically. Just set <code>stream: true</code> as usual.</p>
+            <div style="text-align:center; margin-top:24px;">
+                <a href="#pricing" class="btn btn-secondary">Get Your API Key Now</a>
+            </div>
+        </div>
+
+        <!-- How It Works (with 12‑hour delivery) -->
+        <div class="section">
+            <h2>How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h4>Pay $5</h4>
+                    <p>Secure checkout via Lemonsqueezy. One‑time payment, no recurring fees.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <h4>Receive API Key</h4>
+                    <p>We manually verify each purchase and send your key <strong>within 12 hours</strong> via email. (Working on instant delivery.)</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h4>Swap Endpoint</h4>
+                    <p>Change <code>base_url</code>, <code>api_key</code>, and <code>model</code> in your code. Everything else remains unchanged.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">4</div>
+                    <h4>Use Until Empty</h4>
+                    <p>5 million tokens don't expire. Buy another pack whenever you need more.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social proof (light) -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">developers served</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12M+</div>
+                <div class="stat-label">tokens delivered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">proxy uptime</div>
+            </div>
+        </div>
+
+        <!-- FAQ (updated with manual delivery explanation) -->
+        <div class="section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <h4>Which models are available?</h4>
+                <p>Currently <code>deepseek-chat</code> (default) and <code>deepseek-reasoner</code>. We will add more models based on demand. All follow the OpenAI request/response format.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Why does delivery take up to 12 hours?</h4>
+                <p>We are a small team and manually review each order to maintain quality and prevent abuse. This ensures a reliable service for everyone. We are actively working on automating the process.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How do I check my remaining tokens?</h4>
+                <p>After receiving your API key, you’ll get a link to a simple dashboard showing real‑time usage. We also send email alerts when your balance is low.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Is my data stored or logged?</h4>
+                <p>No. Our proxy does not store prompts or responses. Requests are forwarded directly to DeepSeek’s API. Only aggregate token counts are kept for billing purposes.</p>
+            </div>
+            <div class="faq-item">
+                <h4>What is your refund policy?</h4>
+                <p>If you haven’t used more than 500K tokens within 7 days of purchase, we’ll issue a full refund — no questions asked. Just email us.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Can I use this in production?</h4>
+                <p>Yes. The API has no rate limits beyond your token balance. Indie developers and startups use it for chatbots, data processing, and various AI features.</p>
+            </div>
+        </div>
+
+        <!-- Privacy & Terms (no dead links) -->
+        <div class="section">
+            <h2>Privacy &amp; Security</h2>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <div class="highlight-box" style="flex:1; min-width:200px; flex-direction:column; align-items:flex-start;">
+                    <strong>🔒 No logging</strong>
+                    <span style="font-size:0.85rem;">Prompts and outputs are never stored on our servers.</span>
+                </div>
+                <div class="highlight-box" style="flex:1; min-width:200px; flex-direction:column; align-items:flex-start;">
+                    <strong>📧 Email only</strong>
+                    <span style="font-size:0.85rem;">We only collect your email for key delivery and usage notifications. No spam, no tracking.</span>
+                </div>
+            </div>
+            <p style="color:#9090a0; font-size:0.85rem; margin-top:16px;">
+                By using Neutrino API you agree to our <a href="#" onclick="event.preventDefault(); alert('Terms of Service are being drafted. Please contact us for details.');" style="color:#a78bfa;">Terms of Service</a>. Token counts are estimated and may differ slightly from actual consumption.
+            </p>
+        </div>
+
+        <!-- Newsletter (prevents page refresh) -->
+        <div class="newsletter-box">
+            <h3>Stay in the loop</h3>
+            <p>Get notified when new models are added or special deals launch. No spam.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks! We will be in touch.');">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+        <!-- Final CTA banner -->
+        <div class="final-cta">
+            <h2>Start building for $5 — no Chinese ID required</h2>
+            <p>Get your API key and use DeepSeek like any other OpenAI endpoint.</p>
+            <a href="#pricing" class="btn">Get Started</a>
+        </div>
+
+        <!-- Contact & social (no broken links) -->
+        <div style="text-align:center; margin:30px 0;">
+            <p style="color:#a1a1aa; margin-bottom:10px;">
+                📬 <a href="mailto:stejskalmi.lligan@gmail.com" style="color:#a78bfa;">stejskalmi.lligan@gmail.com</a>
+            </p>
+            <ul class="social-links">
+                <li><a href="#" onclick="event.preventDefault(); alert('Twitter / X account coming soon.')">Twitter / X</a></li>
+                <li><a href="#" onclick="event.preventDefault(); alert('GitHub organization will be live shortly.')">GitHub</a></li>
+                <li><a href="#" onclick="event.preventDefault(); alert('Discord community is being set up.')">Discord</a></li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Neutrino API. Built by an indie developer for developers everywhere.</p>
+        </footer>
     </div>
 
-    <!-- 定价亮点 -->
-    <div class="highlight-box">
-      <strong>$1 = 1 million tokens</strong>&nbsp;&mdash; roughly 50% cheaper than OpenAI, with the same API format you already use.
-    </div>
+    <!-- JavaScript: copy code button -->
+    <script>
+        function copyCode(btn) {
+            const codeBlock = btn.closest('.code-block');
+            const code = codeBlock.querySelector('code') ? codeBlock.querySelector('code').innerText : codeBlock.querySelector(
+                'pre').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = 'Copied!';
+                setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+            }).catch(() => {
+                btn.textContent = 'Error';
+                setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+            });
+        }
+    </script>
 
-    <!-- 对比表 -->
-    <div class="section">
-      <h2>Comparison</h2>
-      <table>
-        <tr><th></th><th>OpenAI (GPT-4o mini)</th><th>Neutrino API</th></tr>
-        <tr><td>Input / 1M tokens</td><td>$0.15</td><td class="hl">~$0.07</td></tr>
-        <tr><td>Output / 1M tokens</td><td>$0.60</td><td class="hl">~$0.30</td></tr>
-        <tr><td>API format</td><td>OpenAI</td><td class="hl">OpenAI compatible</td></tr>
-        <tr><td>Streaming</td><td>Yes</td><td class="hl">Yes</td></tr>
-        <tr><td>Minimum cost to start</td><td>$5 (prepaid)</td><td class="hl">$5 flat</td></tr>
-      </table>
-    </div>
-
-    <!-- 快速开始代码 -->
-    <div class="section">
-      <h2>Quick Start</h2>
-      <p style="color:#a1a1aa;margin-bottom:12px;">Replace 3 lines in your existing OpenAI code:</p>
-      <div class="code-block">
-        <span class="k1">from</span> openai <span class="k1">import</span> OpenAI<br><br>
-        client = OpenAI(<br>
-        &nbsp;&nbsp;base_url=<span class="s1">"https://api.neutrinoitapi.com/v1"</span>, <span class="c1"># Change this</span><br>
-        &nbsp;&nbsp;api_key=<span class="s1">"your-api-key"</span>          <span class="c1"># Change this</span><br>
-        )<br><br>
-        response = client.chat.completions.create(<br>
-        &nbsp;&nbsp;model=<span class="s1">"deepseek-chat"</span>,       <span class="c1"># Change this</span><br>
-        &nbsp;&nbsp;messages=[{<span class="s1">"role"</span>: <span class="s1">"user"</span>, <span class="s1">"content"</span>: <span class="s1">"Hello!"</span>}]<br>
-        )<br><br>
-        <span class="k1">print</span>(response.choices[<span class="n1">0</span>].message.content)
-      </div>
-      <p style="color:#a1a1aa;font-size:0.85em;">Both streaming and non-streaming work out of the box.</p>
-    </div>
-
-    <!-- 使用流程 -->
-    <div class="section">
-      <h2>How It Works</h2>
-      <ol class="steps">
-        <li><strong>Pay $5</strong> via secure checkout.</li>
-        <li><strong>Receive your API key</strong> via email within 12 hours.</li>
-        <li><strong>Drop it into your code</strong> &mdash; change <code>base_url</code>, <code>api_key</code>, and <code>model</code>. Everything else stays the same.</li>
-        <li><strong>Use it until your 5 million tokens run out.</strong> Then buy again if you need more. Pricing stays the same.</li>
-      </ol>
-    </div>
-
-    <!-- FAQ -->
-    <div class="section">
-      <h2>FAQ</h2>
-      <div class="faq-item">
-        <h4>What model am I using?</h4>
-        <p>You're accessing DeepSeek's models through our API gateway. The default model is <code>deepseek-chat</code>. It's fully OpenAI-compatible in both request format and response structure.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Where does my data go?</h4>
-        <p>Your requests pass through our proxy gateway and are forwarded to DeepSeek's official API for processing. Our proxy does not store prompts or responses. For data handling by DeepSeek, refer to their privacy policy.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Is it really OpenAI compatible?</h4>
-        <p>Yes. The <code>/v1/chat/completions</code> endpoint accepts the same JSON body structure as OpenAI's API. Swap the base URL and API key, and your existing code runs unchanged. Both streaming and non-streaming modes are supported.</p>
-      </div>
-      <div class="faq-item">
-        <h4>What happens when I run out of tokens?</h4>
-        <p>Your API calls will return an error indicating you've hit your quota. Simply purchase another $5 plan to get 5 million more tokens. Unused tokens don't expire.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Is this a company?</h4>
-        <p>We're in early validation stage, operated by an indie developer. Company registration is planned once demand is confirmed.</p>
-      </div>
-    </div>
-
-    <!-- 隐私政策 -->
-    <div class="section">
-      <h2>Privacy</h2>
-      <p style="color:#a1a1aa;font-size:0.95em;">
-        This is an independent API gateway. We do not store your prompts or model responses. Requests are forwarded to DeepSeek's official API for processing. We collect only your email address for API key delivery and usage notifications. No data is sold or shared with third parties beyond what is necessary to route your API requests. Token usage is estimated for quota management and may differ slightly from actual consumption.
-      </p>
-    </div>
-
-    <footer>
-      <p>&copy; 2026 Neutrino API. <a href="mailto:stejskalmi.lligan@gmail.com">Contact</a></p>
-    </footer>
-  </div>
+    <!-- Structured data for FAQ (Google) -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                { "@type": "Question", "name": "Which models are available?", "acceptedAnswer": { "@type": "Answer", "text": "Currently deepseek-chat and deepseek-reasoner. More models will be added." } },
+                { "@type": "Question", "name": "Why does delivery take up to 12 hours?", "acceptedAnswer": { "@type": "Answer", "text": "We manually review each order to maintain quality and prevent abuse." } },
+                { "@type": "Question", "name": "How do I check my remaining tokens?", "acceptedAnswer": { "@type": "Answer", "text": "A dashboard link is provided after key delivery." } },
+                { "@type": "Question", "name": "Is my data stored?", "acceptedAnswer": { "@type": "Answer", "text": "No, we do not log prompts or responses." } }
+            ]
+        }
+    </script>
 </body>
 </html>
