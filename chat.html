@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neutrino API — Chat</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0f;
+      color: #e4e4e7;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .topbar {
+      background: #13131a;
+      border-bottom: 1px solid #27272a;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9em;
+    }
+    .topbar input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #111;
+      color: #e4e4e7;
+      font-size: 0.85em;
+    }
+    .topbar button {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      background: #7c3aed;
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.85em;
+      white-space: nowrap;
+    }
+    .topbar button:hover { background: #6d28d9; }
+    .topbar .status { color: #52525b; font-size: 0.8em; min-width: 80px; text-align: right; }
+
+    .chat-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .msg {
+      max-width: 75%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.95em;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+    .msg.user {
+      align-self: flex-end;
+      background: #7c3aed;
+      color: #fff;
+    }
+    .msg.ai {
+      align-self: flex-start;
+      background: #13131a;
+      border: 1px solid #27272a;
+    }
+    .msg.system {
+      align-self: center;
+      background: none;
+      color: #52525b;
+      font-size: 0.85em;
+      text-align: center;
+    }
+
+    .input-row {
+      padding: 12px 20px;
+      border-top: 1px solid #27272a;
+      background: #13131a;
+      display: flex;
+      gap: 8px;
+    }
+    .input-row textarea {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #111;
+      color: #e4e4e7;
+      font-size: 0.95em;
+      resize: none;
+      rows: 1;
+      font-family: inherit;
+    }
+    .input-row button {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background: #7c3aed;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .input-row button:hover { background: #6d28d9; }
+    .input-row button:disabled { background: #333; cursor: not-allowed; }
+
+    .howto {
+      padding: 20px;
+      color: #a1a1aa;
+      font-size: 0.9em;
+      text-align: center;
+      line-height: 2;
+    }
+    .howto strong { color: #a78bfa; }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部：Key 输入区 -->
+  <div class="topbar">
+    <span style="color:#a1a1aa;">Key</span>
+    <input id="key-input" type="password" placeholder="Paste your API key (sk-...)" />
+    <button onclick="saveKey()">Connect</button>
+    <button onclick="clearChat()" style="background:transparent;border:1px solid #333;">Clear</button>
+    <span class="status" id="status">No key</span>
+  </div>
+
+  <!-- 聊天区域 -->
+  <div class="chat-area" id="chat-area">
+    <div class="msg system">
+      <strong>Welcome to Neutrino API Chat</strong><br>
+      Paste your API key in the bar above, then start typing below.<br>
+      Don't have a key? <a href="/" style="color:#a78bfa;">Get one for $5 →</a>
+    </div>
+  </div>
+
+  <!-- 底部输入区 -->
+  <div class="input-row">
+    <textarea id="msg-input" rows="1" placeholder="发送消息...(Enter to send)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"></textarea>
+    <button id="send-btn" onclick="sendMsg()">Send</button>
+  </div>
+
+<script>
+const API_BASE = 'https://api-gateway.1184488783.workers.dev/v1';
+
+// 页面加载时自动读取已保存的 Key
+window.onload = function() {
+  const saved = localStorage.getItem('neutrino_key');
+  if (saved) {
+    document.getElementById('key-input').value = saved;
+    updateStatus();
+  }
+};
+
+function saveKey() {
+  const val = document.getElementById('key-input').value.trim();
+  if (val) {
+    localStorage.setItem('neutrino_key', val);
+  } else {
+    localStorage.removeItem('neutrino_key');
+  }
+  updateStatus();
+}
+
+function updateStatus() {
+  const k = localStorage.getItem('neutrino_key');
+  document.getElementById('status').textContent = k ? 'Connected' : 'No key';
+  document.getElementById('status').style.color = k ? '#34d399' : '#52525b';
+}
+
+function clearChat() {
+  document.getElementById('chat-area').innerHTML = '';
+  document.getElementById('key-input').value = '';
+  localStorage.removeItem('neutrino_key');
+  updateStatus();
+  appendMsg('system', 'Chat cleared. Paste a new key to start.');
+}
+
+function appendMsg(role, text) {
+  const area = document.getElementById('chat-area');
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.textContent = text;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+async function sendMsg() {
+  const key = localStorage.getItem('neutrino_key');
+  if (!key) {
+    appendMsg('system', 'Paste your API key in the top bar first.');
+    return;
+  }
+  const input = document.getElementById('msg-input');
+  const btn = document.getElementById('send-btn');
+  const q = input.value.trim();
+  if (!q) return;
+
+  appendMsg('user', q);
+  input.value = '';
+  btn.disabled = true;
+
+  try {
+    const resp = await fetch(API_BASE + '/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + key
+      },
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        messages: [{ role: 'user', content: q }],
+        stream: false
+      })
+    });
+    const data = await resp.json();
+    if (data.error) {
+      appendMsg('system', 'Error: ' + (typeof data.error === 'string' ? data.error : JSON.stringify(data.error)));
+    } else if (data.choices && data.choices[0]) {
+      appendMsg('ai', data.choices[0].message.content);
+    } else {
+      appendMsg('system', 'Unexpected response. Please try again.');
+    }
+  } catch(e) {
+    appendMsg('system', 'Connection error. Please check your internet and try again.');
+  }
+  btn.disabled = false;
+  input.focus();
+}
+</script>
+</body>
+</html>
